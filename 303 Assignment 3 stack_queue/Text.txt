@@ -1,0 +1,3 @@
+In order to use this program, after running input your infix expressions one at a time. 
+enter as many as you would like, and when you are finished type 'q' and hit enter. 
+the program will print your infix expression as a postfix expression in the order that you entered them.
