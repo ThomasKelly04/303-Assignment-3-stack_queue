@@ -1,3 +1,5 @@
+// main.cpp
+
 #include <iostream>
 #include "expression_manager.h"
 
@@ -15,7 +17,8 @@ int main() {
 
         if (expressionManager.isBalanced(inputExpression)) {
             expressionManager.addInfixToQueue(inputExpression);
-            std::cout << "Expression is balanced. Added to the queue." << std::endl;
+            int queueSize = expressionManager.infixQueue.size(); // Get the size of the queue
+            std::cout << "Expression is balanced. Added to the queue. Queue Size: " << queueSize << std::endl;
         }
         else {
             std::cout << "Expression is unbalanced. Please enter a valid expression." << std::endl;
@@ -24,9 +27,13 @@ int main() {
 
     std::cout << "Converting and displaying postfix expressions:" << std::endl;
     while (!expressionManager.infixQueue.empty()) {
-        std::string postfixExpression = expressionManager.getNextPostfixExpression();
-        std::cout << "Infix: " << inputExpression << " => Postfix: " << postfixExpression << std::endl;
+        std::string infixExpression = expressionManager.infixQueue.front();
+        std::string postfixExpression = expressionManager.infixToPostfix(infixExpression);
+        std::cout << "Infix: " << infixExpression << " => Postfix: " << postfixExpression << std::endl;
+        expressionManager.infixQueue.pop();
     }
 
     return 0;
 }
+
+
