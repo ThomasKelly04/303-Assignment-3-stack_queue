@@ -8,11 +8,21 @@ int main() {
     std::string inputExpression;
 
     while (true) {
-        std::cout << "Enter an infix expression (or 'q' to quit): ";
+        std::cout << "Enter an infix expression ('v' to view queue, or 'q' to quit): ";
         std::getline(std::cin, inputExpression);
 
         if (inputExpression == "q") {
             break;
+        }
+        else if (inputExpression == "v") {
+            // View the current contents of the queue
+            std::queue<std::string> tempQueue = expressionManager.infixQueue; // Copy the original queue
+            std::cout << "Current contents of the queue:" << std::endl;
+            while (!tempQueue.empty()) {
+                std::cout << tempQueue.front() << std::endl;
+                tempQueue.pop();
+            }
+            continue; // Skip further processing for 'v'
         }
 
         if (expressionManager.isBalanced(inputExpression)) {
@@ -35,5 +45,3 @@ int main() {
 
     return 0;
 }
-
-
